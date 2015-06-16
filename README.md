@@ -30,6 +30,10 @@ This project exists a spin-off from my Ph.D. thesis, that involved a lot of work
 
 The code's current architecture doesn't support automated unit testing, but I'm hoping to contribute a second implementation soon.
 
+## Screenshot
+
+![Screenshot](Screenshot.png)
+
 ## Contributors
 
 Derek Steinmoeller
