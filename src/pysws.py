@@ -122,10 +122,10 @@ while time < FINAL_TIME:
         rhs_q = -div_q + source
 
         # Compute Runge-Kutta residual.
-        res_q = RK4A[intrk]*res_q + dt*rhs_q;
+        res_q = RK4A[intrk]*res_q + dt*rhs_q
 
         # Update fields.
-        q += RK4B[intrk]*res_q;
+        q += RK4B[intrk]*res_q
     
     # prepare for next time-step.
     time += dt
