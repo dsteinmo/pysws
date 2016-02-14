@@ -8,11 +8,12 @@ import numpy as np
 #import matplotlib.pyplot as plt
 from solvers.sw_solver import SW_Solver
 
+import os
 
-#np.set_printoptions(threshold='nan', precision=4)
-#plt.ioff()
+run_config_path = os.path.join(os.getcwd(), 'src/sample_run.json')
 
-solver = SW_Solver('sample_run.json')
+
+solver = SW_Solver(run_config_path)
 
 # Define some short-forms.
 x = solver.spatial_discretization.x
