@@ -70,11 +70,15 @@ class SW_Solver:
             #for o in self.outputters:
             #    o.output(count)
 
+            if count % 20 == 0:
+                print count, " ", self.time, " ", self.final_time
+
             self.compute_rhs()
 
-            self.time_stepper.step(self.q, self.rhs, self.res_q, self.dt)
+            self.time_stepper.step(self.q, self.rhs, self.temp, self.dt)
 
             count += 1
+            self.time += self.dt
 
     def compute_max_wave_speed(self):
         self.max_wave_speed = np.sqrt(self.g*np.max(self.q[:,:,0]))
@@ -119,12 +123,14 @@ class SW_Solver:
         self.source[:,:,2] = self.g*self.q[:,:,0]*self.background_depth_yderiv \
                            + self.f*self.q[:,:,1]
 
+
     def __load_spatial_discretization__(self, spatial_discretization_name):
         mod = __import__('spatial_discretizations.',
                          spatial_discretization_name,
                          fromlist=[str(spatial_discretization_name)])
         submod = getattr(mod, spatial_discretization_name)
         return getattr(submod, spatial_discretization_name)
+
 
     def __load_time_stepper__(self, time_stepper_name):
         mod = __import__('time_steppers.',
@@ -133,6 +139,7 @@ class SW_Solver:
         submod = getattr(mod, time_stepper_name)
         return getattr(submod, time_stepper_name)
 
+
     def __initialize_storage__(self):
         nx = self.spatial_discretization.num_points_x
         ny = self.spatial_discretization.num_points_y
@@ -140,7 +147,7 @@ class SW_Solver:
              
         self.q = np.zeros([ny, nx, nf])
         self.rhs_q = np.zeros([ny, nx, nf])
-        self.res_q = np.zeros([ny, nx, nf])
+        self.temp = np.zeros([ny, nx, nf])
         self.flux_qx = np.zeros([ny, nx, nf])
         self.flux_qy = np.zeros([ny, nx, nf])
         self.div_flux_q = np.zeros([ny, nx, nf])

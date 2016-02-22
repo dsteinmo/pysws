@@ -1,6 +1,6 @@
 #!/usr/bin/python2.7
 '''
-Written by Derek Steinmoeller, 2015.
+Written by Derek Steinmoeller, 2015/2016.
 '''
 
 import numpy as np
