@@ -1,0 +1,34 @@
+{
+    "phys_params": {
+        "f": 0.0001,
+        "g": 9.81
+    },
+    "spatial_params": {
+        "discretization_method": "FourierFourierSpatialDiscretization",
+        "length_x": 3000.0,
+        "length_y": 3000.0,
+        "num_points_x": 128,
+        "num_points_y": 128
+    },
+    "temporal_params": {
+        "time_stepper": "Lserk4TimeStepper",
+        "cfl": 0.45,
+        "final_time": 300.0
+    },
+    "outputters": [
+        {
+            "logger": {
+                "log_to_screen": true,
+                "log_to_file": true,
+                "logging_interval": 10.0
+            }
+        },
+        {
+            "plotter": {
+                "plot_to_screen": true,
+                "plot_to_file": true,
+                "plotting_interval": 50.0
+            }
+        }
+    ]
+}
