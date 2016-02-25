@@ -10,8 +10,7 @@ from solvers.sw_solver import SW_Solver
 
 import os
 
-run_config_path = os.path.join(os.getcwd(), 'src/sample_run.json')
-
+run_config_path = os.path.join(os.getcwd(), 'sample_run.json')
 
 solver = SW_Solver(run_config_path)
 
