@@ -4,8 +4,6 @@ Written by Derek Steinmoeller, 2015/2016.
 '''
 
 import numpy as np
-#from numpy.fft import fft, ifft, fftshift
-#import matplotlib.pyplot as plt
 from solvers.sw_solver import SW_Solver
 
 import os
