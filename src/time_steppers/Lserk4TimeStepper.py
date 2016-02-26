@@ -22,4 +22,7 @@ class Lserk4TimeStepper:
 
         # update input array.
         q += rk4b[intrk]*res_q
-    
+
+        return q
+
+

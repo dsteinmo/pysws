@@ -81,14 +81,16 @@ class SW_Solver:
 
             self.compute_time_step()
 
-            outputmessage = '{0}, {1}, {2}'.format(count, self.time, self.final_time)
+            # outputmessage = "t: ", self.time, ", dt: ", self.dt, " max h: ", np.max(self.q[:,:,0]), " max hu: ", np.max(self.q[:,:,1])
+            outputmessage = "t :{0}, dt: {1}, max(h): {2}, max(hu): {3}".format(self.time, self.dt,
+                                                                        np.max(self.q[:,:,0]), np.max(self.q[:,:,1]))
             self.console_logger.output(count, outputmessage)
 
             self.plotter.output(count, self.x, self.y, self.q[:, :, 0] - self.background_depth)
 
-            self.compute_rhs()
+            self.rhs = self.compute_rhs()
 
-            self.time_stepper.step(self.q, self.rhs, self.temp, self.dt)
+            q = self.time_stepper.step(self.q, self.temp, self.rhs, self.dt)
 
             count += 1
             self.time += self.dt
@@ -105,7 +107,9 @@ class SW_Solver:
         self.__compute_flux_divergence__()
         self.__compute_source__()
 
-        self.rhs = -self.div_flux_q + self.source
+        rhs = -self.div_flux_q + self.source
+
+        return rhs
 
     def __compute_flux__(self):
         q = self.q
@@ -163,9 +167,9 @@ class SW_Solver:
         nf = SW_Solver.NUM_FIELDS
 
         self.q = np.zeros([ny, nx, nf])
-        self.rhs_q = np.zeros([ny, nx, nf])
         self.temp = np.zeros([ny, nx, nf])
         self.flux_qx = np.zeros([ny, nx, nf])
         self.flux_qy = np.zeros([ny, nx, nf])
         self.div_flux_q = np.zeros([ny, nx, nf])
         self.source = np.zeros([ny, nx, nf])
+        self.rhs = np.zeros([ny, nx, nf])
