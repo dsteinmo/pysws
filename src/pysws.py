@@ -30,6 +30,6 @@ eta_initial = 1.e-1*np.exp(-np.square((x - 0.5*LX)/(LX/15.0)) -
 u_initial = np.zeros([num_y, num_x])
 v_initial = np.zeros([num_y, num_x])
 
-solver.initialize_fields(eta_initial, u_initial, v_initial, background_depth)
+solver.initialize_fields(eta_initial, u_initial, v_initial, background_depth, x, y)
 
 solver.solve()

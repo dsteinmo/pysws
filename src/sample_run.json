@@ -20,7 +20,7 @@
         "logging_interval": 10.0
     },
     "plotter": {
-        "name": "PcolorPlotter"
+        "name": "PcolorPlotter",
         "plot_to_screen": true,
         "plot_to_file": true,
         "plotting_interval": 50.0
