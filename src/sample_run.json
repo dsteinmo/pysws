@@ -15,20 +15,14 @@
         "cfl": 0.45,
         "final_time": 300.0
     },
-    "outputters": [
-        {
-            "logger": {
-                "log_to_screen": true,
-                "log_to_file": true,
-                "logging_interval": 10.0
-            }
-        },
-        {
-            "plotter": {
-                "plot_to_screen": true,
-                "plot_to_file": true,
-                "plotting_interval": 50.0
-            }
-        }
-    ]
+    "console_logger": {
+        "name": "ConsoleLogger",
+        "logging_interval": 10.0
+    },
+    "plotter": {
+        "name": "PcolorPlotter"
+        "plot_to_screen": true,
+        "plot_to_file": true,
+        "plotting_interval": 50.0
+    }
 }

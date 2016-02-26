@@ -1,6 +1,8 @@
 import json
 from pprint import pprint
+
 import numpy as np
+
 
 class SW_Solver:
     NUM_FIELDS = 3
@@ -19,7 +21,6 @@ class SW_Solver:
 
         self.spatial_params = config['spatial_params']
         self.temporal_params = config['temporal_params']
-        self.outputter_names = config['outputters']
 
         spatial_discretization_name = \
                   self.spatial_params['discretization_method']
@@ -39,6 +40,11 @@ class SW_Solver:
 
         # Initiate time stepper.
         self.time_stepper = TimeStepper()
+
+        # Initiate console logger.
+        logger_name = config['console_logger']['name']
+        ConsoleLogger = self.__load_outputter__(logger_name)
+        self.console_logger = ConsoleLogger(config['console_logger'])
 
         self.__initialize_storage__()
 
@@ -67,11 +73,8 @@ class SW_Solver:
 
             self.compute_time_step()
 
-            #for o in self.outputters:
-            #    o.output(count)
-
-            if count % 20 == 0:
-                print count, " ", self.time, " ", self.final_time
+            outputmessage = '{0}, {1}, {2}'.format(count, self.time, self.final_time)
+            self.console_logger.output(count, outputmessage)
 
             self.compute_rhs()
 
@@ -138,6 +141,14 @@ class SW_Solver:
                          fromlist=[str(time_stepper_name)])
         submod = getattr(mod, time_stepper_name)
         return getattr(submod, time_stepper_name)
+
+    def __load_outputter__(self, outputter_name):
+        mod = __import__('outputters.',
+                         outputter_name,
+                         fromlist=[str(outputter_name)])
+        submod = getattr(mod, outputter_name)
+        theclass = getattr(submod, outputter_name)
+        return theclass
 
 
     def __initialize_storage__(self):
