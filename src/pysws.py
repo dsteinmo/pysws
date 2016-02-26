@@ -25,7 +25,7 @@ H0 = 10.0
 background_depth = H0 - 3.0*np.exp(-np.square((x - 0.5*LX)/(LX/5.0)))
 
 # Define initial conditions and initialize the solver.
-eta_initial = 1.e-1*np.exp(-np.square((x - 0.5*LX)/(LX/15.0)) -
+eta_initial = 2*np.exp(-np.square((x - 0.5*LX)/(LX/15.0)) -
                      np.square((y - 0.5*LY)/(LY/15.0)))
 u_initial = np.zeros([num_y, num_x])
 v_initial = np.zeros([num_y, num_x])

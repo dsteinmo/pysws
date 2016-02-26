@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3dc2f73-b796-4062-ab8f-8e0c3d1999c1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pysws.py" afterPath="$PROJECT_DIR$/src/pysws.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample_run.json" afterPath="$PROJECT_DIR$/src/sample_run.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/solvers/sw_solver.py" afterPath="$PROJECT_DIR$/src/solvers/sw_solver.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/time_steppers/Lserk4TimeStepper.py" afterPath="$PROJECT_DIR$/src/time_steppers/Lserk4TimeStepper.py" />
     </list>
     <ignored path="pysws.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pysws.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pysws.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pysws.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.55334985">
+              <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
               <folding>
                 <element signature="e#72#90#0" expanded="true" />
               </folding>
@@ -53,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/src/solvers/sw_solver.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-10.83871">
-              <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+              <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -61,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sample_run.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sample_run.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample_run.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7398844">
-              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -121,10 +120,10 @@
         <option value="$PROJECT_DIR$/src/outputters/console_logger.py" />
         <option value="$PROJECT_DIR$/src/outputters/ConsoleLogger.py" />
         <option value="$PROJECT_DIR$/src/outputters/PcolorPlotter.py" />
-        <option value="$PROJECT_DIR$/src/pysws.py" />
         <option value="$PROJECT_DIR$/src/time_steppers/Lserk4TimeStepper.py" />
         <option value="$PROJECT_DIR$/src/solvers/sw_solver.py" />
         <option value="$PROJECT_DIR$/src/sample_run.json" />
+        <option value="$PROJECT_DIR$/src/pysws.py" />
       </list>
     </option>
   </component>
@@ -556,16 +555,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pysws.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="e#72#90#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/time_steppers/Lserk4TimeStepper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -574,21 +563,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample_run.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/solvers/sw_solver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.83871">
-          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+          <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample_run.json">
+    <entry file="file://$PROJECT_DIR$/src/pysws.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7398844">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-          <folding />
+        <state vertical-scroll-proportion="0.55334985">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding>
+            <element signature="e#72#90#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
