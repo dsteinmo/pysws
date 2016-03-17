@@ -1,6 +1,6 @@
 from pprint import pprint
 import numpy as np
-from numpy.fft import fft, ifft, fftshift
+from numpy.fft import fft, ifft, fftshift, fft2, ifft2
 
 class FourierFourierSpatialDiscretization:
 
@@ -60,3 +60,5 @@ class FourierFourierSpatialDiscretization:
     def differentiate_y(self, field):
         return np.real(ifft((1.j*self.l)*fft(field, axis=0), axis=0))
 
+    def filter_field(self, field):
+        return np.real(ifft2(self.filter*fft2(field)))

@@ -74,6 +74,12 @@ class SW_Solver:
         self.background_depth_yderiv = \
             self.spatial_discretization.differentiate_y(background_depth)
 
+    def filter_fields(self):
+        self.q[:, :, 0] = self.spatial_discretization.filter_field(self.q[:, :, 0])
+        self.q[:, :, 1] = self.spatial_discretization.filter_field(self.q[:, :, 1])
+        self.q[:, :, 2] = self.spatial_discretization.filter_field(self.q[:, :, 2])
+
+
     def solve(self):
         count = 0
         while self.time < self.final_time:
@@ -91,6 +97,8 @@ class SW_Solver:
             self.rhs = self.compute_rhs()
 
             q = self.time_stepper.step(self.q, self.temp, self.rhs, self.dt)
+
+            self.filter_fields()
 
             count += 1
             self.time += self.dt
