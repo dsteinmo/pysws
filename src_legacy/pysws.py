@@ -86,14 +86,16 @@ while time < FINAL_TIME:
         
     # Standard logging output
     if ((count % LOGGING_INTERVAL) == 0)  or count == 1:
-        print "t: ", time, ", dt: ", dt, " max h: ", np.max(q[:,:,0]), " max hu: ", np.max(q[:,:,1])
+        print("t: ", time, ", dt: ", dt, " max h: ", np.max(q[:,:,0]), " max hu: ", np.max(q[:,:,1]))
         
         if ONLINE_VISUALIZATION == True:
             plt.clf()
             plt.pcolor(x, y, q[:,:,0] - background_depth)
             plt.colorbar()
             plt.draw()
-            plt.show(block=False)
+            plt.ion()
+            plt.show()
+            plt.pause(0.001)
     
     # Loop through Runge-Kutta stages.    
     for intrk in LSERK4_STAGES:
@@ -133,5 +135,5 @@ while time < FINAL_TIME:
 
 print ("======================================================="
        "=======================")
-print "Simulation complete."
+print("Simulation complete.")
 plt.show()
