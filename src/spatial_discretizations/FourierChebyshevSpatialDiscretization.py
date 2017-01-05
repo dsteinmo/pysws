@@ -32,8 +32,7 @@ class FourierChebyshevSpatialDiscretization:
         DX = 2*np.sin(Tt+T)*np.sin(Tt-T)
         DX = np.vstack([DX[0:n1, :], -np.flipud(np.fliplr(DX[0:n2, :]))])
 
-        for i in range(0,N):
-            DX[i,i] = 1.0
+        DX[range(N),range(N)] = 1.0
 
         C = toeplitz((-1.0)**k)
         C[0,:] = C[0,:]*2.0
@@ -42,8 +41,7 @@ class FourierChebyshevSpatialDiscretization:
         C[:,N-1] = C[:,N-1] / 2.0
 
         Z = 1.0 / DX
-        for i in range(0,N):
-            Z[i,i] = 0.0
+        Z[range(N),range(N)] = 0.0
 
         D = np.eye(N)
         DM = np.zeros([N, N, M])
@@ -51,8 +49,7 @@ class FourierChebyshevSpatialDiscretization:
         for ell in range(1,M+1):
             D = ell*Z*(C*np.tile(np.array([np.diag(D)]).T,(1,N)) - D)
             diag = -np.sum(D,1)
-            for i in range(0,N):
-                D[i,i] = diag[i]
+            D[range(N),range(N)] = diag
 
             DM[:,:,ell-1] = D
 
