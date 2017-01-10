@@ -1,5 +1,7 @@
 import numpy as np
 from scipy.linalg import toeplitz
+from numpy.fft import fft
+
 
 def cheb_dif(N, M):
     I = np.eye(N)
@@ -42,3 +44,17 @@ def cheb_dif(N, M):
         DM[:, :, ell - 1] = D
 
     return (x, DM)
+
+def cosine_transform(f):
+    """
+    :type f: numpy.array, 2D column vector.
+    """
+    sz = f.shape
+    N = sz[0]
+    even_extension = np.vstack((f, np.flipud(f[1:N-1, :])))
+    cc = fft(even_extension)
+    result = cc[:N, :]
+    if np.isreal(f).all():
+        result = np.real(result)
+
+    return result
