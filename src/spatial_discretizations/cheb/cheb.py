@@ -45,25 +45,22 @@ def cheb_dif(N, M):
 
     return (x, DM)
 
-def cosine_transform(f):
+def cosine_transform(f, axis=0):
     """
-    :type f: numpy.array, 2D column vector.
+    :type f: numpy.array, 2D.
     """
+    if axis == 1:
+        f = f.T
+
     sz = f.shape
     N = sz[0]
-    even_extension = np.vstack((f, np.flipud(f[1:N-1, :])))
+    even_extension = np.vstack((f, np.flipud(f[1:N - 1, :])))
     cc = fft(even_extension, axis=0)
     result = cc[:N, :]
     if np.isreal(f).all():
         result = np.real(result)
 
-    return result
+    if axis == 1:
+        return result.T
 
-def cosine_transform_axis(f, axis):
-    """
-    :type f: numpy.array, 2D.
-    """
-    if axis == 0:
-        return cosine_transform(f)
-    elif axis == 1:
-        return (cosine_transform(f.T)).T
+    return result
