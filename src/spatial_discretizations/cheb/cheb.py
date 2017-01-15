@@ -52,7 +52,7 @@ def cosine_transform(f):
     sz = f.shape
     N = sz[0]
     even_extension = np.vstack((f, np.flipud(f[1:N-1, :])))
-    cc = fft(even_extension)
+    cc = fft(even_extension, axis=0)
     result = cc[:N, :]
     if np.isreal(f).all():
         result = np.real(result)
