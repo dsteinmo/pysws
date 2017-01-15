@@ -58,3 +58,12 @@ def cosine_transform(f):
         result = np.real(result)
 
     return result
+
+def cosine_transform_axis(f, axis):
+    """
+    :type f: numpy.array, 2D.
+    """
+    if axis == 0:
+        return cosine_transform(f)
+    elif axis == 1:
+        return (cosine_transform(f.T)).T

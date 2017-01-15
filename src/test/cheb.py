@@ -46,8 +46,20 @@ class ChebTests(unittest.TestCase):
         f2hat = cheb.cosine_transform(f2)
         f2hat_expected = np.array([[24.00000], [-6.828427124746190], [0.00000], [-1.171572875253810], [0.00000]])
 
-        print norm(f2hat-f2hat_expected, ord=2)
         self.assertLess(norm(f2hat-f2hat_expected, ord=2), EPS, "Cosine transform test 2")
+
+    def test_cosine_transform_withaxis(self):
+        f = np.array([[8], [8], [8], [8], [8], [8]])
+        fhat = cheb.cosine_transform_axis(f, axis=0)
+
+        fhat_expected = np.array([[80.], [0.], [0.], [0.], [0.], [0.]])
+        self.assertLess(norm(fhat - fhat_expected, ord=2), EPS, "Cosine transform with axis test 1")
+
+        f2 = np.array([[8, 8, 8, 8, 8, 8]])
+        f2hat = cheb.cosine_transform_axis(f2, axis=1)
+        f2hat_expected = np.array([[80., 0., 0., 0., 0., 0.]])
+
+        self.assertLess(norm(f2hat-f2hat_expected, ord=2), EPS, "Cosine transform with axis test 2")
 
 if __name__ == '__main__':
     unittest.main()
