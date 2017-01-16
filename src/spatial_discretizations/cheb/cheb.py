@@ -64,3 +64,18 @@ def cosine_transform(f, axis=0):
         return result.T
 
     return result
+
+def cheb_derivative(f):
+    sz = f.shape
+    N = sz[0]
+
+    cc = cosine_transform(np.real(f))
+    dd = np.zeros(f.shape)
+
+    dd[N-2, :] = 2*(N-1)*cc[N-1, :]
+    for k in range(N-3, -1, -1):
+        dd[k, :] = dd[k+2, :] + 2*(k+1)*cc[k+1, :]
+
+    dd = cosine_transform(np.real(dd))/(2*(N-1))
+    return dd
+
