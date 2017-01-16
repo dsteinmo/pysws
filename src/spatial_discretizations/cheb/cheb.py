@@ -65,7 +65,10 @@ def cosine_transform(f, axis=0):
 
     return result
 
-def cheb_derivative(f):
+def cheb_derivative(f, axis=0):
+    if axis == 1:
+        f = f.T
+
     sz = f.shape
     N = sz[0]
 
@@ -77,5 +80,9 @@ def cheb_derivative(f):
         dd[k, :] = dd[k+2, :] + 2*(k+1)*cc[k+1, :]
 
     dd = cosine_transform(np.real(dd))/(2*(N-1))
+
+    if axis == 1:
+        return dd.T
+
     return dd
 

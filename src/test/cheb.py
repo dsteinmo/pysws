@@ -76,5 +76,19 @@ class ChebTests(unittest.TestCase):
 
         self.assertLess(norm(df2dx-df2dx_expected, ord=2), EPS, "Cheb derivative of [1,2,3,4]")
 
+    def test_cheb_derivative_withaxis(self):
+        f = np.array([[8], [8], [8], [8], [8], [8]])
+        dfdx = cheb.cheb_derivative(f, axis=0)
+
+        dfdx_expected = np.array([[0], [0], [0], [0], [0], [0]])
+
+        self.assertLess(norm(dfdx-dfdx_expected, ord=2), EPS, "Cheb derivative of constant down axis=0")
+
+        f2 = np.array([[8, 8, 8, 8, 8, 8]])
+        df2dx = cheb.cheb_derivative(f2, axis=1)
+
+        df2dx_expected = np.array([[0, 0, 0, 0, 0, 0]])
+        self.assertLess(norm(df2dx-df2dx_expected, ord=2), EPS, "Cheb derivative of constant down axis=1")
+
 if __name__ == '__main__':
     unittest.main()
