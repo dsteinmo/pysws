@@ -34,6 +34,7 @@ class ChebTests(unittest.TestCase):
 
         self.assertLess(norm(D2-D2_expected, ord=2), EPS, "cheb second derivative matrix")
 
+
     def test_cosine_transform(self):
         f = np.array([[8], [8], [8], [8], [8], [8]])
         fhat = cheb.cosine_transform(f)
@@ -48,6 +49,7 @@ class ChebTests(unittest.TestCase):
 
         self.assertLess(norm(f2hat-f2hat_expected, ord=2), EPS, "Cosine transform test 2")
 
+
     def test_cosine_transform_withaxis(self):
         f = np.array([[8], [8], [8], [8], [8], [8]])
         fhat = cheb.cosine_transform(f, axis=0)
@@ -60,6 +62,7 @@ class ChebTests(unittest.TestCase):
         f2hat_expected = np.array([[80., 0., 0., 0., 0., 0.]])
 
         self.assertLess(norm(f2hat-f2hat_expected, ord=2), EPS, "Cosine transform with axis test 2")
+
 
     def test_cheb_derivative(self):
         f = np.array([[8], [8], [8], [8], [8], [8]])
@@ -76,6 +79,7 @@ class ChebTests(unittest.TestCase):
 
         self.assertLess(norm(df2dx-df2dx_expected, ord=2), EPS, "Cheb derivative of [1,2,3,4]")
 
+
     def test_cheb_derivative_withaxis(self):
         f = np.array([[8], [8], [8], [8], [8], [8]])
         dfdx = cheb.cheb_derivative(f, axis=0)
@@ -89,6 +93,37 @@ class ChebTests(unittest.TestCase):
 
         df2dx_expected = np.array([[0, 0, 0, 0, 0, 0]])
         self.assertLess(norm(df2dx-df2dx_expected, ord=2), EPS, "Cheb derivative of constant down axis=1")
+
+
+    # 2D tests:
+    def test_cosine_transform_2D(self):
+        f = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+        fhat = cheb.cosine_transform(f, axis=0)
+
+        fhat_expected = np.array([[ 16.,  20.,  24.], [ -6.,  -6.,  -6.], [  0.,   0.,   0.]])
+
+        self.assertLess(norm(fhat-fhat_expected, ord=2), EPS, "2D cosine transform down axis=0")
+
+        fhat2 = cheb.cosine_transform(f, axis=1)
+
+        fhat2_expected = np.array([[8., -2., 0.], [20., -2., 0.], [32., -2., 0.]])
+
+        self.assertLess(norm(fhat2-fhat2_expected, ord=2), EPS, "2D cosine transform down axis=1")
+
+
+    def test_cheb_derivative_2D(self):
+        f = np.array([[1, 2, 3], [1, 2, 3], [1, 2, 3]])
+
+        fy = cheb.cheb_derivative(f, axis=0)
+        fy_expected = np.array([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+
+        self.assertLess(norm(fy-fy_expected, ord=2), EPS, "Cheb derivative down axis=0")
+
+        fx = cheb.cheb_derivative(f, axis=1)
+        fx_expected = np.array([[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]])
+
+        self.assertLess(norm(fx-fx_expected, ord=2), EPS, "Cheb derivative down axis=1")
+
 
 if __name__ == '__main__':
     unittest.main()
