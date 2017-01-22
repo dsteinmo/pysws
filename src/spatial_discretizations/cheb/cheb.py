@@ -6,8 +6,8 @@ from numpy.fft import fft
 def cheb_dif(N, M):
     I = np.eye(N)
 
-    n1 = np.floor(N / 2)
-    n2 = np.ceil(N / 2)
+    n1 = int(np.floor(N / 2))
+    n2 = int(np.ceil(N / 2))
 
     k = np.array([np.arange(0, N)]).T
     th = k * np.pi / (N - 1)
