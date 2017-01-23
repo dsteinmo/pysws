@@ -25,5 +25,45 @@ class FourierChebyshevSpatialDiscretizationTests(unittest.TestCase):
         self.assertEqual(config['num_points_x'], fcsd.num_points_x)
         self.assertEqual(config['num_points_y'], fcsd.num_points_x)
 
+
+    def test_x_derivative(self):
+        config = dict()
+        config['length_x'] = 1000.
+        config['length_y'] = 2000.
+        config['num_points_x'] = 128
+        config['num_points_y'] = 256
+
+        fcsd = FCSD.FourierChebyshevSpatialDiscretization(config)
+        x = fcsd.x
+        y = fcsd.y
+
+        f = np.tanh(x)
+
+        fx = fcsd.differentiate_x(f)
+
+        fx_expected = 1/(np.cosh(x)**2)
+
+        self.assertLess(norm(fx-fx_expected, ord=2), EPS, "x derivative test")
+
+    def test_y_derivative(self):
+        config = dict()
+        config['length_x'] = 1000.
+        config['length_y'] = 2000.
+        config['num_points_x'] = 128
+        config['num_points_y'] = 256
+
+        fcsd = FCSD.FourierChebyshevSpatialDiscretization(config)
+
+        x = fcsd.x
+        y = fcsd.y
+
+        f = np.sin(2*np.pi*y/fcsd.length_y)
+        fy = fcsd.differentiate_y(f)
+
+        fy_expected = 2*np.pi/fcsd.length_y*np.cos(2*np.pi*y/fcsd.length_y)
+
+        self.assertLess(norm(fy - fy_expected, ord=2), EPS, "y derivative test")
+
+
 if __name__ == '__main__':
     unittest.main()
