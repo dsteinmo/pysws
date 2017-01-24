@@ -21,6 +21,8 @@ class FourierChebyshevSpatialDiscretization:
     def __build_grid__(self):
         x_1d, Dm = cheb.cheb_dif(self.num_points_x, 1)
 
+        x_1d = 0.5*(x_1d+1)*self.length_x
+
         y_1d, dy = np.linspace(0, self.length_y, self.num_points_y, False, True)
         self.x, self.y = np.meshgrid(x_1d, y_1d)
 
@@ -61,7 +63,7 @@ class FourierChebyshevSpatialDiscretization:
         self.filter_y[int(np.floor(self.num_points_y / 2 + 1)), :] = 0
 
     def differentiate_x(self, field):
-        return cheb.cheb_derivative(field, axis=1)
+        return (2/self.length_x)*cheb.cheb_derivative(field, axis=1)
 
     def differentiate_y(self, field):
         return np.real(ifft((1.j * self.l) * fft(field, axis=0), axis=0))

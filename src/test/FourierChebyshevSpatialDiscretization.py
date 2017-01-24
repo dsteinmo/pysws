@@ -37,11 +37,11 @@ class FourierChebyshevSpatialDiscretizationTests(unittest.TestCase):
         x = fcsd.x
         y = fcsd.y
 
-        f = np.tanh(x)
+        f = np.tanh(x/(0.25*fcsd.length_x))
 
         fx = fcsd.differentiate_x(f)
 
-        fx_expected = 1/(np.cosh(x)**2)
+        fx_expected = 1/(np.cosh(x/(0.25*fcsd.length_x))**2)/(0.25*fcsd.length_x)
 
         self.assertLess(norm(fx-fx_expected, ord=2), EPS, "x derivative test")
 
