@@ -1,5 +1,3 @@
-from pprint import pprint
-
 
 class ConsoleLogger:
     def __init__(self, config):
@@ -7,4 +5,4 @@ class ConsoleLogger:
 
     def output(self, timestep, message):
         if (timestep % self.interval) == 0:
-            pprint(message)
+            print(message)

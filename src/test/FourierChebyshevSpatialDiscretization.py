@@ -36,7 +36,6 @@ class FourierChebyshevSpatialDiscretizationTests(unittest.TestCase):
 
         fcsd = FCSD.FourierChebyshevSpatialDiscretization(config)
         x = fcsd.x
-        y = fcsd.y
 
         f = np.tanh(x/(0.25*fcsd.length_x))
 
@@ -55,7 +54,6 @@ class FourierChebyshevSpatialDiscretizationTests(unittest.TestCase):
 
         fcsd = FCSD.FourierChebyshevSpatialDiscretization(config)
 
-        x = fcsd.x
         y = fcsd.y
 
         f = np.sin(2*np.pi*y/fcsd.length_y)

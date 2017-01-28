@@ -3,12 +3,11 @@ from pprint import pprint
 
 import numpy as np
 
-
 class SW_Solver:
     NUM_FIELDS = 3
 
     def __init__(self, config_file_path):
-        print "config_file is:", config_file_path
+        print("config_file is:", config_file_path)
 
         config_file = open(config_file_path, 'r')
 
@@ -24,13 +23,13 @@ class SW_Solver:
 
         spatial_discretization_name = \
             self.spatial_params['discretization_method']
-        print "Loading spatial discretization: ", spatial_discretization_name
+        print("Loading spatial discretization: ", spatial_discretization_name)
 
         SpatialDiscretization = self.__load_spatial_discretization__(
             spatial_discretization_name)
 
         time_stepper_name = self.temporal_params['time_stepper']
-        print "Loading time-stepper: ", time_stepper_name
+        print("Loading time-stepper: ", time_stepper_name)
 
         TimeStepper = self.__load_time_stepper__(time_stepper_name)
 
@@ -148,21 +147,21 @@ class SW_Solver:
                                + self.f * self.q[:, :, 1]
 
     def __load_spatial_discretization__(self, spatial_discretization_name):
-        mod = __import__('spatial_discretizations.',
+        mod = __import__('spatial_discretizations',
                          spatial_discretization_name,
                          fromlist=[str(spatial_discretization_name)])
         submod = getattr(mod, spatial_discretization_name)
         return getattr(submod, spatial_discretization_name)
 
     def __load_time_stepper__(self, time_stepper_name):
-        mod = __import__('time_steppers.',
+        mod = __import__('time_steppers',
                          time_stepper_name,
                          fromlist=[str(time_stepper_name)])
         submod = getattr(mod, time_stepper_name)
         return getattr(submod, time_stepper_name)
 
     def __load_outputter__(self, outputter_name):
-        mod = __import__('outputters.',
+        mod = __import__('outputters',
                          outputter_name,
                          fromlist=[str(outputter_name)])
         submod = getattr(mod, outputter_name)
