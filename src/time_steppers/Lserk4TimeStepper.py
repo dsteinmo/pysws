@@ -14,15 +14,14 @@ class Lserk4TimeStepper:
          3134564353537.0/4481467310338.0,
          2277821191437.0/14882151754819.0];
 
-    def step(self, q, res_q, rhs_q, dt):
+    def step(self, solver, dt):
         rk4a = Lserk4TimeStepper.RK4A
         rk4b = Lserk4TimeStepper.RK4B
+        res_q = 0.*solver.q
+
         for intrk in Lserk4TimeStepper.LSERK4_STAGES:
-             res_q = rk4a[intrk]*res_q + dt*rhs_q
-
-        # update input array.
-        q += rk4b[intrk]*res_q
-
-        return q
+            rhs_q = solver.compute_rhs()
+            res_q = rk4a[intrk]*res_q + dt*rhs_q
+            solver.q += rk4b[intrk]*res_q
 
 

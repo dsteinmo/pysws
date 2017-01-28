@@ -9,7 +9,10 @@ class PcolorPlotter:
     def output(self, timestep, x, y, field):
         if (timestep % self.interval) == 0 and self.plot_to_screen is True:
             plt.clf()
+            plt.ion()
+            plt.show()
             plt.pcolor(x, y, field)
             plt.colorbar()
             plt.draw()
-            plt.show(block=False)
+            plt.pause(0.001)
+
