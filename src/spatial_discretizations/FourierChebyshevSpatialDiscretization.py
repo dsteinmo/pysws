@@ -70,10 +70,10 @@ class FourierChebyshevSpatialDiscretization:
 
     def filter_field(self, field):
         # Filter in x with cosine transform:
-        field = (1 / (2 * (self.num_points_x - 1))) * cheb.cosine_transform(
-                        self.filter_x * cheb.cosine_transform(field, 1), 1);
+        field = (1. / (2. * (self.num_points_x - 1.))) * cheb.cosine_transform(
+                         self.filter_x * cheb.cosine_transform(field, axis=1), axis=1)
 
         # Filter in y with Fourier transform:
-        field = ifft(self.filter_y * fft(field, axis=0), axis=0)
+        field = np.real(ifft(self.filter_y * fft(field, axis=0), axis=0))
 
         return field

@@ -77,9 +77,9 @@ def cheb_derivative(f, axis=0):
 
     dd[N-2, :] = 2*(N-1)*cc[N-1, :]
     for k in range(N-3, -1, -1):
-        dd[k, :] = dd[k+2, :] + 2*(k+1)*cc[k+1, :]
+        dd[k, :] = dd[k+2, :] + 2.*(k+1.)*cc[k+1, :]
 
-    dd = cosine_transform(np.real(dd))/(2*(N-1))
+    dd = cosine_transform(np.real(dd))/(2.*(N-1.))
 
     if axis == 1:
         return dd.T

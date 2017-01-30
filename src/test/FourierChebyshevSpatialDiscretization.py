@@ -63,6 +63,20 @@ class FourierChebyshevSpatialDiscretizationTests(unittest.TestCase):
 
         self.assertLess(norm(fy - fy_expected, ord=2), EPS, "y derivative test")
 
+    def test_filter(self):
+        config = dict()
+        config['length_x'] = 1000.
+        config['length_y'] = 2000.
+        config['num_points_x'] = 32
+        config['num_points_y'] = 32
+
+        fcsd = FCSD.FourierChebyshevSpatialDiscretization(config)
+
+        f = (fcsd.x-0.5*fcsd.length_x)/fcsd.length_x * np.sin(4*np.pi*fcsd.y/fcsd.length_y)
+        f_filtered = fcsd.filter_field(f)
+
+        self.assertLess(norm(f-f_filtered, ord=2), EPS, "filter test")
+
 
 if __name__ == '__main__':
     unittest.main()
